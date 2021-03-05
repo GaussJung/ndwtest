@@ -18,7 +18,7 @@ app.get('/voiceroom',(req,res)=>{
 
 app.get('/voiceroom:room',(req,res)=>{
     res.render('room',{ roomId: req.params.room})
-    
+
 }) //변경된 경로에 room에 파라미터 값을 roomId에 저장 시킨다.
 
 

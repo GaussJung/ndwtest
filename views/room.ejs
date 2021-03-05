@@ -3,8 +3,8 @@
     #video-grid{
         display: flex;
         flex-direction: row;
-        width: 350px;
-        height: 350x;
+        max-width: 350px;
+        max-height: 350px;
         margin: 15px;
     }
 
@@ -13,6 +13,13 @@
         height: 100%;
         object-fit: cover;
         margin: 0 15px 0 0;
+    }
+    #screen{
+        display: flex;
+        flex-direction: row;
+        max-width: 350px;
+        max-height: 350px;
+        margin: 15px;
     }
 </style>
 <html lang="ko">
@@ -26,11 +33,15 @@
     <script defer src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
     <script src="/socket.io/socket.io.js" defer></script>
     <script src="script.js" defer></script>
-    <title>Document</title>
+    <title>VOICE</title>
     
 </head>
 <body>
-    <div id="video-grid"></div>
+    <div id="video-grid">
+        
+    </div>
+    <div id="screen"></div>
+    <button  onclick="displayShow()">화면공유</button>
     <a href="/"><button>전화 나가기 v0.21</button></a>
     <!-- <button onclick="changeCam()">화면 전환</button> -->
 </body>
