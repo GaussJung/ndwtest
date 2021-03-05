@@ -1,4 +1,4 @@
-# ndwrtc
+# ndwtest
 
 Soynet Untact-Exam 팀 Test 프로젝트 
 
@@ -7,8 +7,8 @@ Soynet Untact-Exam 팀 Test 프로젝트
 - 시험 외부 연계 
 
 2. 구성원 
-- Team Leader : 정철웅 cwjung@soynet.io 
-- Team Member : 김영훈 haa3163314@soynet.io
+- Team Leader : 정철웅  
+- Team Member : 김영훈 
 
 3. 설치 및 환경 (as ubuntu) 
 - AWS EC2 micro freetier 설치 
@@ -40,38 +40,17 @@ sudo mddir work
 
 - 기본디렉토리 이동 ( /svdata/work )
 - git 클론 
-  git clone https://github.com/GaussJung/ndwrtc  
-- 기동 
-  cd ndwrtc 
+  git clone https://github.com/GaussJung/ndwtest  
 
-
-5. 기본 접속 데모 
-- 기동   
-  sudo forever start server.js ( 영구동작 )
-  sudo npm start server.js ( ssh 접속중 동작, 로그파일 확인가능  ) 
-
-- 메인페이지 
-http://utest.soymlops.com:3010/
-
-- 소켙테스트 
-http://utest.soymlops.com:3010/demo/wstest.html 
-
-- 소켙주소  
-ws://utest.soymlops.com:1010/socket 
- 
- 
-
-6. 보안 주소 접속 
+5. 보안 주소 접속 
 - 기동   
   sudo forever start sslsvr.js ( 영구동작 )
   sudo npm start sslsvr.js ( ssh 접속중 동작, 로그파일 확인가능  ) 
 
 
 - 메인페이지 
-https://utest.soymlops.com/
+https://wrtc.soymlops.com/
 
 - 소켙테스트 
-https://utest.soymlops.com/demo/wstest.html 
+https://wrtc.soymlops.com/demo/wstest.html 
 
-- 소켙주소  
-wss://utest.soymlops.com:1010/socket 
