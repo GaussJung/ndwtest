@@ -1,13 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>
+        input{
+            margin-bottom: 10px;
+        }
+    </style>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= title %></title>
 </head>
 <body>
-    <h1>메인화면이다.</h1>
-    <a href="/voiceroom"><button>전화만들기</button></a>
+    <!-- <form action="" method="post"> -->
+        <h1>메인화면이다.</h1>
+        <input type="number" placeholder="수험번호를 입력하세요." name="codeNum" value=""/>
+        <input type="text" placeholder="이름을 입력하세요." name="name" value=""/>
+        <a href="/voiceroom"><input type="submit" value="전화만들기 v0.22" /></a>
+    <!-- </form> -->
 </body>
 </html>

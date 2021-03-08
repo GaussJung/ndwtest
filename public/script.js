@@ -3,11 +3,54 @@ const videoGrid = document.getElementById("video-grid")
 const screen = document.getElementById("screen")
 const peer = new Peer()
 let bool = true
+let bools = true
 
-const myVideo = document.createElement("video")     //비디오 태그 생성
+const myVideo = document.getElementById("myVideo")   
+const recordScreen = document.getElementById("recordVideo") //비디오 태그 생성
+const startRecord = document.getElementById("startRecord")
+const stopRecord = document.getElementById("stopRecord")
 myVideo.muted = true
 const peers = {}    // 나간 카메라에 userId를 받아 저장
     
+
+
+const recordVideo = () =>{                                
+    navigator.mediaDevices.getUserMedia({video:true, audio:false}).then(stream =>{
+    const options =  {
+      mimeType : 'video/webm; '
+    }
+    let Recorder = new MediaRecorder(stream, options)
+    
+    startRecord.onclick =() =>{
+        Recorder.start()
+        console.log(Recorder)
+    }
+    
+    stopRecord.onclick = () =>{
+        Recorder.stop()
+        console.log(Recorder)
+        const handleVideoData = (e) => {
+            // blob 이벤트에서 data 추출
+            const { data } = e;
+            console.log(data,e)
+            // 다운로드를 위해 a 태그를 만들어주고 href로 해당 data를 다운로드 받을 수 있게 url을 만듭시다
+            const videoDownloadlink = document.createElement("a");
+            videoDownloadlink.href = URL.createObjectURL(data);
+            
+            // 다운로드 되는 파일의 이름. 확장자는 mp4 등 다양하게 가능하지만 오픈 소스인지 확인 합시다
+            link.download = "recorded.webm";
+            
+            // body에 append 해줘야겠죠
+            document.body.appendChild(link);
+            
+            // faking click. body에 append 했으니 클릭해서 다운로드를 해줘야 합니다.
+            link.click();
+          };
+          Recorder.addEventListener("dataavailable", handleVideoData);
+    }
+    })
+}
+
 
 const  displayShow = () =>{
     if(bool === true){
@@ -17,12 +60,14 @@ const  displayShow = () =>{
     const display = document.createElement('video')
     screenShot(display, stream)
 })
+}else{
+    bool = false
+    display.destroy()
 }
 } // 화면공유 시켜주는 함수
 
 const screenShot = (video,kind) =>{
     video.srcObject = kind
-    console.log(kind)
     video.addEventListener('loadedmetadata',() =>{
         video.play()
         bool = false;
@@ -32,7 +77,7 @@ const screenShot = (video,kind) =>{
 
 navigator.mediaDevices.getUserMedia({
     video : true
-}).then(stream =>{
+}).then(stream =>{ 
     addVideoStream(myVideo, stream)
 
     peer.on('call', call =>{
@@ -81,3 +126,10 @@ const addVideoStream = (video,stream) => {
     })
     videoGrid.append(video)
     }//영상에 매체와 실행을 맡는 함수
+
+
+    function play() {
+        var superBuffer = new Blob(recordedChunks);
+        videoElement.src =
+          window.URL.createObjectURL(superBuffer);
+      }

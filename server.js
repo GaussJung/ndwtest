@@ -3,6 +3,9 @@ const app = express()
 const server = require('http').Server(app)
 const io = require('socket.io')(server)
 const { v4: uuidV4 } = require('uuid')
+let codeNum 
+let name
+
 
 
 app.set('view engine', 'ejs') // ejs 파일을 열수있게 한다.
@@ -12,16 +15,22 @@ app.get('/',(req,res) =>{
     res.render("main",{title : "voiceChat"})
 }) //경로가 "/" 일때 main.ejs가 열리고 타이틀에 이름을 변경
 
+
 app.get('/voiceroom',(req,res)=>{
+   
+    console.log(req.body)
     res.redirect(`/voiceroom=${uuidV4()}`)
 }) //경로가 "/voiceroom일때" 경로를 "/voiceroom= + 가상 키 "가 경로로 설정된다. 
 
 app.get('/voiceroom:room',(req,res)=>{
     res.render('room',{ roomId: req.params.room})
-
+    console.log(req.body)
 }) //변경된 경로에 room에 파라미터 값을 roomId에 저장 시킨다.
 
-
+app.post('/confirm',(req,res,next) =>{
+    console.log(req.body)
+    res.render("confirm",{title: "CONFIRM"})
+})
 
 io.on('connection', socket =>{
     socket.on('join-room', (roomId, userId) =>{
