@@ -1,29 +1,8 @@
 <!DOCTYPE html>
-<style>
-    #video-grid{
-        display: flex;
-        flex-direction: row;
-        max-width: 350px;
-        max-height: 350px;
-        margin: 15px;
-    }
 
-    video{
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        margin: 0 15px 0 0;
-    }
-    #screen{
-        display: flex;
-        flex-direction: row;
-        max-width: 350px;
-        max-height: 350px;
-        margin: 15px;
-    }
-</style>
 <html lang="ko">
 <head>
+    <title>VOICE</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,18 +12,40 @@
     <script defer src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
     <script src="/socket.io/socket.io.js" defer></script>
     <script src="script.js" defer></script>
-    <title>VOICE</title>
+    <style>
+        #video-grid{
+            display: flex;
+            flex-direction: row;
+            max-width: 350px;
+            max-height: 350px;
+            margin: 15px;
+        }
     
+        video{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            margin: 0 15px 0 0;
+        }
+        #screen{
+            display: flex;
+            flex-direction: row;
+            max-width: 350px;
+            max-height: 350px;
+            margin: 15px;
+        }
+    </style>
 </head>
 <body>
     <div id="video-grid">
-        
+        <video src="" id="myVideo"autoplay playsinline >
     </div>
-    <div id="screen"><video src="" id="myVideo"autoplay playsinline ></div>
+    <div id="screen"></div>
+    <button id="openCam">웹캠 키기</button>
     <button  onclick="displayShow()">화면공유</button>
-    <button id="startRecord" onclick="recordVideo()">화면 녹화</button>
+    <button id="startRecord" ">화면 녹화</button>
     <button id="stopRecord" >녹화 멈추기</button>
-    <a href="/"><button>전화 나가기 v0.22</button></a>
+    <a href="/"><button>나가기 v0.3</button></a>
     <!-- <button onclick="changeCam()">화면 전환</button> -->
 </body>
 </html>
