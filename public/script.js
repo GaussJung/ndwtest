@@ -30,7 +30,7 @@ const recordVideo = () =>{
     stopRecordBtn.onclick = () =>{
         SetRecorder.stop();
         console.log(SetRecorder);
-        myVideo.stop()
+        
 
         const handleVideoData = (e) => {
             // blob 이벤트에서 data 추출
