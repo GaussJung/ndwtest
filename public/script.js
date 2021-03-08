@@ -14,7 +14,7 @@ const peers = {};    // 나간 카메라에 userId를 받아 저장
     
 
 // 캠 영상을 녹화하는 함수 호출
-startRecordBtn.onclick =() =>{recordVideo(), recordScreen()};
+startRecordBtn.onclick =() =>{recordVideo()};
     
 
 const recordVideo = () =>{                                
@@ -31,8 +31,9 @@ const recordVideo = () =>{
         SetRecorder.stop();
         console.log(SetRecorder);
         
-
+        
         const handleVideoData = (e) => {
+            //로컬저장
             // blob 이벤트에서 data 추출
             const { data } = e;
             console.log(data,e)
@@ -48,7 +49,18 @@ const recordVideo = () =>{
             
             // faking click. body에 append 했으니 클릭해서 다운로드를 해줘야 한다.
             videoDownloadlink.click();
+
+            //         // 서버저장
+            //         let formdata = new FormData();
+            // formdata.append("fname", "audio.webm");
+            // formdata.append("data", blob);
+
+            // let xhr = new XMLHttpRequest();
+            // xhr.open("POST", "/upload", false);
+            // xhr.send(formdata);
           };
+          
+          
           SetRecorder.addEventListener("dataavailable", handleVideoData);
     };
     }
@@ -161,6 +173,8 @@ const connectToNewUser = (userId, stream) =>{
     call.on('close', () =>{
         video.remove();
     })
+
+    
 
     peers[userId] = call;
 };
