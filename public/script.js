@@ -13,7 +13,7 @@ myVideo.muted = true;
 const peers = {};    // 나간 카메라에 userId를 받아 저장
     
 
-// 캠 영상을 녹화하는 함수 
+// 캠 영상을 녹화하는 함수 호출
 startRecordBtn.onclick =() =>{recordVideo(), recordScreen()};
     
 
