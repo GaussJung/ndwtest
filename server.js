@@ -15,22 +15,25 @@ app.get('/',(req,res) =>{
     res.render("main",{title : "voiceChat"});
 }); 
 
-// 경로가 "/voiceroom일때" 경로를 "/voiceroom= + 가상 키 "가 경로로 설정된다.
-app.get('/voiceroom',(req,res)=>{
-    console.log(req.body);
-    res.redirect(`/voiceroom=${uuidV4()}`);
-});
 
 // 변경된 경로에 room에 파라미터 값을 roomId에 저장 시킨다.
-app.get('/voiceroom:room',(req,res)=>{
-    res.render('room',{ roomId: req.params.room});
+app.get('/voiceroom',(req,res)=>{
+    res.render('room');
 }); 
+
+// 관리자 화면
+app.get('/admin', (req,res)=>{
+    res.render('admin', {title: "ADMIN"})
+})
 
 // 소켓 서버
 io.on('connection', socket =>{
     socket.on('join-room', (roomId, userId) =>{
         socket.join(roomId);
         socket.to(roomId).broadcast.emit("user-connected", userId);
+        
+       
+        
 
         socket.on('disconnect',() =>{
             socket.to(roomId).broadcast.emit('user-disconnected', userId);
