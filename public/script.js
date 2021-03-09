@@ -85,7 +85,6 @@ const recordVideo = () =>{
     //자신이 방에 들어 왔을때 추가되는 태그와 영상
         peerServer.on('call', call =>{
             call.answer(stream);
-            const video = document.createElement('video');
            
         }); 
     

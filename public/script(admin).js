@@ -10,7 +10,7 @@ const peers = {};    // 나간 카메라에 userId를 받아 저장
 let room    
 
 
-    peerServer.on('open', id => {
+    peerServer.on('open', () => {
         socket.emit('join-room',0904, "admin");
     });
 
