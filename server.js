@@ -17,7 +17,7 @@ app.get('/',(req,res) =>{
 
 // 변경된 경로에 room에 파라미터 값을 roomId에 저장 시킨다.
 app.get('/voiceroom',(req,res)=>{
-    res.render('room',{title:"ROOM"});
+    res.render('room');
 }); 
 
 // 관리자 화면
@@ -31,9 +31,6 @@ io.on('connection', socket =>{
         socket.join(roomId);
         socket.to(roomId).broadcast.emit("user-connected", userId);
         
-       
-        
-
         socket.on('disconnect',() =>{
             socket.to(roomId).broadcast.emit('user-disconnected', userId);
         });
