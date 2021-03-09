@@ -2,7 +2,6 @@ const express = require('express');
 const app = express();
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
-const { v4: uuidV4 } = require('uuid');
 
 
 
@@ -18,7 +17,7 @@ app.get('/',(req,res) =>{
 
 // 변경된 경로에 room에 파라미터 값을 roomId에 저장 시킨다.
 app.get('/voiceroom',(req,res)=>{
-    res.render('room');
+    res.render('room',{title:"ROOM"});
 }); 
 
 // 관리자 화면
