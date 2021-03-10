@@ -1,7 +1,7 @@
 const socket = io('/');
 const videoArea = document.getElementById("video-grid");
 const screenArea = document.getElementById("screen");
-let peer = new Peer({host:"/", port: 3011})
+let peer = new Peer({host:"wrtc.soymlops.com", port: 3011})
 let recordVideoBool = true
 let shareScreenBool = true;
 
