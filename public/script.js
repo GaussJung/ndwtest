@@ -203,4 +203,3 @@ const addScreenShot = (video,kind) =>{
         var superBuffer = new Blob(recordedChunks);
         videoElement.src = window.URL.createObjectURL(superBuffer);
       };
-

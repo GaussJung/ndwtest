@@ -10,9 +10,12 @@ const peers = {};    // 나간 카메라에 userId를 받아 저장
 let room    
 
 
-    peerServer.on('open', id => {
-        socket.emit('join-room',0904, id);
+    peerServer.on('open', () => {
+        socket.emit('join-room',0904, "admin");
     });
+
+
+
 
 
 // 웹캠화면 출력
@@ -120,7 +123,3 @@ const addScreenShot = (video,kind) =>{
         var superBuffer = new Blob(recordedChunks);
         videoElement.src = window.URL.createObjectURL(superBuffer);
       };
-
-
-
-
