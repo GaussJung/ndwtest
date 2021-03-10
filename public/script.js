@@ -1,7 +1,10 @@
 const socket = io('/');
 const videoArea = document.getElementById("video-grid");
 const screenArea = document.getElementById("screen");
-const peerServer = new Peer();
+const peerServer = new Peer({
+    host : "/",
+    port : 3001
+});
 let recordVideoBool = true
 let shareScreenBool = true;
 

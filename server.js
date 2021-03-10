@@ -4,7 +4,6 @@ const server = require('http').Server(app);
 const io = require('socket.io')(server);
 
 
-
 // ejs 파일을 열수있게 한다.
 app.set('view engine', 'ejs'); 
 app.use(express.static('public')); 
