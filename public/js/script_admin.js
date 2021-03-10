@@ -1,10 +1,7 @@
 const socket = io('/');
 const videoArea = document.getElementById("video-grid");
 const screenArea = document.getElementById("screen");
-const peerServer = new Peer({
-    host : "/",
-    port : 3001
-});
+const peerServer = new Peer();
 let recordVideoBool = true
 let shareScreenBool = true;
 
@@ -13,12 +10,9 @@ const peers = {};    // 나간 카메라에 userId를 받아 저장
 let room    
 
 
-    peerServer.on('open', () => {
-        socket.emit('join-room',0904, "admin");
+    peerServer.on('open', id => {
+        socket.emit('join-room',0904, id);
     });
-
-
-
 
 
 // 웹캠화면 출력
