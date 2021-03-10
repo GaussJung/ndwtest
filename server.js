@@ -2,6 +2,9 @@ const express = require('express');
 const app = express();
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
+const { PeerServer } = require('peer');
+
+const peerServer = PeerServer({ port: 3011, path: '/' });
 
 
 
@@ -37,4 +40,5 @@ io.on('connection', socket =>{
     });
 });
 
+peerServer.listen(()=>{console.log("3011")})
 server.listen(3010,()=>console.log("connect port 3010"));

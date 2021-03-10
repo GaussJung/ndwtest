@@ -1,7 +1,7 @@
 const socket = io('/');
 const videoArea = document.getElementById("video-grid");
 const screenArea = document.getElementById("screen");
-const peerServer = new Peer();
+let peer = new Peer({host:"/", port: 3011})
 let recordVideoBool = true
 let shareScreenBool = true;
 
@@ -10,7 +10,7 @@ const peers = {};    // 나간 카메라에 userId를 받아 저장
 let room    
 
 
-    peerServer.on('open', () => {
+    peer.on('open', () => {
         socket.emit('join-room',0904, "admin");
     });
 
@@ -27,7 +27,7 @@ let room
     
     
     //자신이 방에 들어 왔을때 추가되는 태그와 영상
-        peerServer.on('call', call =>{
+        peer.on('call', call =>{
             call.answer(stream);
             const video = document.createElement('video');
             call.on('stream', userVideoStream=>{
@@ -51,7 +51,7 @@ if(shareScreenBool){
     shareScreenBool = false;
     
     //자신이 방에 들어 왔을때 추가되는 태그와 영상
-    peerServer.on('call', call =>{
+    peer.on('call', call =>{
         call.answer(stream);
         const screen = document.createElement('video');
         call.on('screen', userScreenStream=>{
@@ -75,7 +75,7 @@ socket.on("user-disconnected", userId =>{
 
 // 자신이 방에 들어 왔을때 추가되는 태그와 영상
 const connectToNewUserVideo = (userId, stream) =>{
-    const call = peerServer.call(userId, stream);
+    const call = peer.call(userId, stream);
     const video = document.createElement('video');
     call.on('stream', userVideoStream =>{
         addVideoStream(video, userVideoStream);
@@ -88,7 +88,7 @@ const connectToNewUserVideo = (userId, stream) =>{
 };
 
 const connectToNewUserScreen = (userId, stream) =>{
-    const call = peerServer.call(userId, stream);
+    const call = peer.call(userId, stream);
     const screen = document.createElement('video');
     call.on('screen', userScreenStream =>{
         addScreenShot(screen, userScreenStream);

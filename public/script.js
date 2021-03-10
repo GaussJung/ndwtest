@@ -1,7 +1,7 @@
 const socket = io('/');
 const videoArea = document.getElementById("video-grid");
 const screenArea = document.getElementById("screen");
-const peerServer = new Peer();
+const peerServer = new Peer({host:"/", port: 3011});
 let recordVideoBool = true
 let shareScreenBool = true;
 
@@ -22,7 +22,7 @@ BtnstartRecordScreen.onclick = () =>{shareScreen()};
 
 const recordVideo = () =>{      
     if(recordVideoBool){                          
-    navigator.mediaDevices.getUserMedia({video:true, audio:false}).then(stream =>{
+    navigator.mediaDevices.getUserMedia({video:true, audio:true}).then(stream =>{
     const options =  { mimeType : 'video/webm; codecs=vp9 '};
     let SetRecorder = new MediaRecorder(stream, options);
     
@@ -100,7 +100,7 @@ const recordVideo = () =>{
 const shareScreen = () =>{
 if(shareScreenBool){
     alert("화면공유된 영상은 자동 녹화 가능합니다. 녹화중지가 필요할 경우 화면녹화중지 버튼을 눌러 주세요.")                  
-    navigator.mediaDevices.getDisplayMedia({video:true, audio:false}).then(stream =>{
+    navigator.mediaDevices.getDisplayMedia({video:true, audio:true}).then(stream =>{
     const options =  { mimeType : 'video/webm; codecs=vp9 '};
     let SetScreenRecorder = new MediaRecorder(stream, options);
     shareScreenBool = false;
