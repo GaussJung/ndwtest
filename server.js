@@ -39,6 +39,4 @@ io.on('connection', socket =>{
         });
     });
 });
-
-peerServer.listen(()=>{console.log("3011")})
-server.listen(3010,()=>console.log("connect port 3010"));
+(peerServer,server).listen(3010,()=>console.log("connect port 3010"));
