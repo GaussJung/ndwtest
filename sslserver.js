@@ -73,6 +73,7 @@ const { PeerServer } = require('peer');
 
 const peerServer = PeerServer({
   port: 444,
+  path :"/",
   ssl: {
     key: fs.readFileSync('/etc/letsencrypt/live/utest.soymlops.com/privkey.pem'),
     cert: fs.readFileSync('/etc/letsencrypt/live/utest.soymlops.com/cert.pem')
