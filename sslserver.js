@@ -7,7 +7,7 @@ const express = require('express');
 const app = express();
 const fs = require('fs');
 const http = require('http');
-const https = require('https');
+const https = require('https').Server(app);
 const io = require('socket.io')(https);
 
 
@@ -57,10 +57,10 @@ const httpServer = http.createServer(app);
 const httpsServer = https.createServer(credentials, app);
 
 httpServer.listen(80, () => {
-	console.log('UTEST wrtc 0.34 HTTP Server running on port 80');
+	console.log('UTEST wrtc 0.35 HTTP Server running on port 80');
 });
 
 httpsServer.listen(443, () => {
-	console.log('UTEST wrtc 0.34 HTTPS Server running on port 443');
+	console.log('UTEST wrtc 0.35 HTTPS Server running on port 443');
 });
 
