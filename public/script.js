@@ -19,7 +19,7 @@ const peers = {};    // 나간 카메라에 userId를 받아 저장
 BtnstartRecord.onclick =() =>{recordVideo()};
 BtnstartRecordScreen.onclick = () =>{shareScreen()};
     
-
+// 웹캠 영상 녹화 함수
 const recordVideo = () =>{      
     if(recordVideoBool){                          
     navigator.mediaDevices.getUserMedia({video:true, audio:true}).then(stream =>{

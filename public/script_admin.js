@@ -4,28 +4,19 @@ const screenArea = document.getElementById("screen");
 let peer = new Peer()
 let recordVideoBool = true
 let shareScreenBool = true;
-
-
 const peers = {};    // 나간 카메라에 userId를 받아 저장
 let room    
 
-
+// peer서버에 접속하는 명령어_에러가 나는 부분.
     peer.on('open', () => {
         socket.emit('join-room',0904, "admin");
     });
-
-
-
 
 
 // 웹캠화면 출력
     navigator.mediaDevices.getUserMedia({
         video : true
     }).then(stream =>{ 
-    
-        
-    
-    
     //자신이 방에 들어 왔을때 추가되는 태그와 영상
         peer.on('call', call =>{
             call.answer(stream);
@@ -40,8 +31,6 @@ let room
             connectToNewUserVideo(userId, stream);
         });      
     }); 
-
-
 
 // 화면 공유 실행
 const shareScreen = () =>{
@@ -72,7 +61,6 @@ socket.on("user-disconnected", userId =>{
     if( peers[userId]) {peers[userId].close();}
 });
 
-
 // 자신이 방에 들어 왔을때 추가되는 태그와 영상
 const connectToNewUserVideo = (userId, stream) =>{
     const call = peer.call(userId, stream);
@@ -87,6 +75,7 @@ const connectToNewUserVideo = (userId, stream) =>{
     peers[userId] = call;
 };
 
+// 스크린을 공유할때 영상을 새로 추가하는 함수
 const connectToNewUserScreen = (userId, stream) =>{
     const call = peer.call(userId, stream);
     const screen = document.createElement('video');
@@ -117,7 +106,6 @@ const addScreenShot = (video,kind) =>{
     });
     screenArea.append(video);
 };
-
 
     function play() {
         var superBuffer = new Blob(recordedChunks);
