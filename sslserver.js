@@ -7,8 +7,8 @@ const express = require('express');
 const app = express();
 const fs = require('fs');
 const http = require('http');
-const https = require('https').Server(app);
-const io = require('socket.io')(https);
+const https = require('https');
+
 
 
 const privateKey = fs.readFileSync('/etc/letsencrypt/live/utest.soymlops.com/privkey.pem', 'utf8');
@@ -41,6 +41,22 @@ app.get('/admin', (req,res)=>{
     res.render('admin', {title: "ADMIN"})
 })
 
+
+
+const httpServer = http.createServer(app);
+const httpsServer = https.createServer(credentials, app);
+
+
+httpServer.listen(80, () => {
+	console.log('UTEST wrtc 0.36 HTTP Server running on port 80');
+});
+
+httpsServer.listen(443, () => {
+	console.log('UTEST wrtc 0.36 HTTPS Server running on port 443');
+});
+
+const io = require('socket.io')(httpsServer);
+
 // 소켓 서버
 io.on('connection', socket =>{
     socket.on('join-room', (roomId, userId) =>{
@@ -52,15 +68,3 @@ io.on('connection', socket =>{
         });
     });
 });
-
-const httpServer = http.createServer(app);
-const httpsServer = https.createServer(credentials, app);
-
-httpServer.listen(80, () => {
-	console.log('UTEST wrtc 0.35 HTTP Server running on port 80');
-});
-
-httpsServer.listen(443, () => {
-	console.log('UTEST wrtc 0.35 HTTPS Server running on port 443');
-});
-
