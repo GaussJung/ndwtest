@@ -77,6 +77,7 @@ const peerServer = PeerServer({
     key: fs.readFileSync('/etc/letsencrypt/live/utest.soymlops.com/privkey.pem'),
     cert: fs.readFileSync('/etc/letsencrypt/live/utest.soymlops.com/cert.pem')
   },
+  proxied: true
 })
 
 app.use('/peerjs', peerServer);
