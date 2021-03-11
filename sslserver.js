@@ -68,3 +68,20 @@ io.on('connection', socket =>{
         });
     });
 });
+
+const { PeerServer } = require('peer');
+
+const peerServer = PeerServer({
+  port: 444,
+  ssl: {
+    key: fs.readFileSync('/etc/letsencrypt/live/utest.soymlops.com/privkey.pem'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/utest.soymlops.com/cert.pem')
+  },
+  proxied: true
+})
+
+app.use('/peerjs', peerServer);
+
+peerServer.listen(444, () => {
+	console.log('UTEST wrtc 0.37 HTTPS Server running on port 443');
+});
