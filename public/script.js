@@ -75,7 +75,8 @@ const recordVideo = () =>{
 
 // 웹캠화면 출력
     navigator.mediaDevices.getUserMedia({
-        video : true
+        video : true,
+        audio : true
     }).then(stream =>{ 
     
         

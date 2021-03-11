@@ -5,9 +5,21 @@
 */
 const express = require('express');
 const app = express();
-const server = require('http').Server(app);
-const io = require('socket.io')(server);
+const fs = require('fs');
+const http = require('http');
+const https = require('https');
+const io = require('socket.io')(https);
 
+
+const privateKey = fs.readFileSync('/etc/letsencrypt/live/utest.soymlops.com/privkey.pem', 'utf8');
+const certificate = fs.readFileSync('/etc/letsencrypt/live/utest.soymlops.com/cert.pem', 'utf8');
+const ca = fs.readFileSync('/etc/letsencrypt/live/utest.soymlops.com/chain.pem', 'utf8');
+
+const credentials = {
+	key: privateKey,
+	cert: certificate,
+	ca: ca
+};
 
 // ejs 파일을 열수있게 한다.
 app.set('view engine', 'ejs'); 
@@ -41,4 +53,14 @@ io.on('connection', socket =>{
     });
 });
 
-(server).listen(3010,()=>console.log("connect port 3010"));
+const httpServer = http.createServer(app);
+const httpsServer = https.createServer(credentials, app);
+
+httpServer.listen(80, () => {
+	console.log('UTEST wrtc 0.34 HTTP Server running on port 80');
+});
+
+httpsServer.listen(443, () => {
+	console.log('UTEST wrtc 0.34 HTTPS Server running on port 443');
+});
+
