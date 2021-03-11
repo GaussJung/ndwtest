@@ -24,7 +24,7 @@ const credentials = {
 // ejs 파일을 열수있게 한다.
 app.set('view engine', 'ejs'); 
 app.use(express.static('public')); 
-app.use(require('helmet')());
+// app.use(require('helmet')());
 
 // 경로가 "/" 일때 main.ejs가 열리고 타이틀에 이름을 변경
 app.get('/',(req,res) =>{

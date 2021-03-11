@@ -5,14 +5,14 @@
 */
 const express = require('express');
 const app = express();
-const server = require('http').Server(app);
-const io = require('socket.io')(server);
+const http = require('http');
+
 
 
 // ejs 파일을 열수있게 한다.
 app.set('view engine', 'ejs'); 
 app.use(express.static('public')); 
-app.use(require('helmet')());
+// app.use(require('helmet')());
 
 // 경로가 "/" 일때 main.ejs가 열리고 타이틀에 이름을 변경
 app.get('/',(req,res) =>{
@@ -30,6 +30,12 @@ app.get('/admin', (req,res)=>{
 })
 
 // 소켓 서버
+const httpServer = http.createServer(app);
+
+(httpServer).listen(3010,()=>console.log("connect port 3010"));
+
+const io = require('socket.io')(httpServer);
+
 io.on('connection', socket =>{
     socket.on('join-room', (roomId, userId) =>{
         socket.join(roomId);
@@ -40,5 +46,3 @@ io.on('connection', socket =>{
         });
     });
 });
-
-(server).listen(3010,()=>console.log("connect port 3010"));
