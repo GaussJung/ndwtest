@@ -48,11 +48,11 @@ const httpsServer = https.createServer(credentials, app);
 
 
 httpServer.listen(80, () => {
-	console.log('UTEST wrtc 0.36 HTTP Server running on port 80');
+	console.log('UTEST wrtc 0.37 HTTP Server running on port 80');
 });
 
 httpsServer.listen(443, () => {
-	console.log('UTEST wrtc 0.36 HTTPS Server running on port 443');
+	console.log('UTEST wrtc 0.37 HTTPS Server running on port 443');
 });
 
 const io = require('socket.io')(httpsServer);

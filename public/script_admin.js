@@ -1,8 +1,8 @@
 const socket = io('/');
 const videoArea = document.getElementById("video-grid");
 const screenArea = document.getElementById("screen");
-let peer = new Peer()
-let recordVideoBool = true
+const peer = new Peer();
+let recordVideoBool = true;
 let shareScreenBool = true;
 const peers = {};    // 나간 카메라에 userId를 받아 저장
 let room    
@@ -39,6 +39,7 @@ if(shareScreenBool){
     navigator.mediaDevices.getDisplayMedia({video:true, audio:false}).then(stream =>{
     shareScreenBool = false;
     
+
     //자신이 방에 들어 왔을때 추가되는 태그와 영상
     peer.on('call', call =>{
         call.answer(stream);
