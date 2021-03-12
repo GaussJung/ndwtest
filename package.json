@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node sslserver.js",
     "devStart": "nodemon server.js",
-    "dev":"peerjs --port 444",
+    "dev":"peerjs --port 3010",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
