@@ -72,7 +72,7 @@ io.on('connection', socket =>{
 const { PeerServer } = require('peer');
 
 const peerServer = PeerServer({
-  port: 3010,
+  port: 3011,
   path :"/",
   ssl: {
     key: fs.readFileSync('/etc/letsencrypt/live/utest.soymlops.com/privkey.pem'),
