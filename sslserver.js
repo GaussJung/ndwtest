@@ -83,6 +83,6 @@ const peerServer = PeerServer({
 
 app.use('/peerjs', peerServer);
 
-peerServer.listen(3010, () => {
+peerServer.listen(3011, () => {
 	console.log('UTEST wrtc 0.37 HTTPS Server running on port 3010');
 });
