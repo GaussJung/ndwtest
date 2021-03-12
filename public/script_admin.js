@@ -1,7 +1,7 @@
 const socket = io('/');
 const videoArea = document.getElementById("video-grid");
 const screenArea = document.getElementById("screen");
-let peer = new Peer({host : '/', port : 9000 });
+let peer = new Peer({ port : 3010 });
 let recordVideoBool = true;
 let shareScreenBool = true;
 const peers = {};    // 나간 카메라에 userId를 받아 저장
