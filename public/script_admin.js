@@ -1,7 +1,7 @@
 const socket = io('/');
 const videoArea = document.getElementById("video-grid");
 const screenArea = document.getElementById("screen");
-const peer = new Peer({host:"/" , port: 3011});
+let peer = new Peer({host : '/', port : 9000 });
 let recordVideoBool = true;
 let shareScreenBool = true;
 const peers = {};    // 나간 카메라에 userId를 받아 저장
@@ -39,7 +39,6 @@ if(shareScreenBool){
     navigator.mediaDevices.getDisplayMedia({video:true, audio:false}).then(stream =>{
     shareScreenBool = false;
     
-
     //자신이 방에 들어 왔을때 추가되는 태그와 영상
     peer.on('call', call =>{
         call.answer(stream);
@@ -63,10 +62,10 @@ socket.on("user-disconnected", userId =>{
 });
 
 // 자신이 방에 들어 왔을때 추가되는 태그와 영상
-const connectToNewUserVideo = (userId, stream) =>{
+const connectToNewUserVideo = async (userId, stream) =>{
     const call = peer.call(userId, stream);
     const video = document.createElement('video');
-    call.on('stream', userVideoStream =>{
+    await call.on('stream', userVideoStream =>{
         addVideoStream(video, userVideoStream);
     })
     call.on('close', () =>{

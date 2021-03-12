@@ -1,7 +1,7 @@
 const socket = io('/');
 const videoArea = document.getElementById("video-grid");
 const screenArea = document.getElementById("screen");
-const peerServer = new Peer({host:"/" , port: 3011});
+const peerServer = new Peer({host : '/', port : 9000 });
 let recordVideoBool = true
 let shareScreenBool = true;
 
@@ -14,6 +14,75 @@ const BtnstopRecordScreen = document.getElementById("stopRecordScreen");
 myVideo.muted = true;
 const peers = {};    // 나간 카메라에 userId를 받아 저장
     
+// let signalingChannel = socket.on("join-room",20020904,"user")
+// let pc 
+// const start = ()  =>{
+//     pc = RTCPeerConnection({'iceServers' : [{
+//         'urls' : "stun:stun.example.org"
+//     }]
+// });
+
+// pc.onicecandidate = evt =>{
+//     if(evt.candidate){
+//         signalingChannel.send(JSON.stringify({
+//             'candidate' : evt.candidate
+//         }));
+//     };
+// }
+
+// pc.onnegotiationneeded = () =>{
+//     pc.createOffer(localDescCreated, logError);
+// }
+
+// pc.onaddstream = evt =>{
+//     remoteView.src = URL.createObjectURL(evt.stream);
+// }
+
+// navigator.getUserMedia({
+//     'audio' : true,
+//     "video" : true
+// }, stream => {
+//     selfView.src = URL.createObjectURL(stream);
+//     pc.addStream(stream)
+// }, logError);
+
+// const localDescCreated = desc =>{
+//     pc.setLocalDescription(desc, () =>{
+//         signalingChannel.send(JSON.stringify({
+//             'sdp' : pc.localDescription
+//         }));
+//     }, logError)
+// }
+
+// signalingChannel.onmessage = evt =>{
+//     if(!pc){
+//         start()
+    
+
+//     let message = JSON.parse(evt.data);
+//     if(message.sdp){
+//         pc.setRemoteDescription(new RTCSessionDescription(message.sdp),
+//     function () {
+//         if(pc.setRemoteDescription.type == 'offer')
+//             pc.createAnswer(localDescCreated,logError);
+//     },logError);
+// }else {pc.addIceCandidate(new RTCIceCandidate(message.candidate));
+// };
+//     }
+
+//     const logError = error =>{
+//         log(error.name + ';' + error.messsage);
+//     }
+
+// }
+// }
+
+
+
+
+
+
+
 
 // 캠 영상을 녹화하는 함수 호출
 BtnstartRecord.onclick =() =>{recordVideo()};
@@ -66,6 +135,8 @@ const recordVideo = () =>{
           
           
           SetRecorder.addEventListener("dataavailable", handleVideoData);
+          video =false;
+          audio = false
     };
     }
     )};
